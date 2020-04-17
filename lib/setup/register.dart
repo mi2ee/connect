@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:connect/Pages/MainPage.dart' as MainPage;
-import 'package:connect/Setup/LoginHandling.dart' as LoginHandling;
+import 'package:connect/pages/HomeScreen.dart';
+import 'package:connect/Setup/LoginHandling.dart' ;
 
 
 
