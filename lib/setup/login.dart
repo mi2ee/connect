@@ -1,4 +1,5 @@
 import 'package:connect/pages/HomeScreen.dart';
+import 'package:connect/setup/reset.dart';
 import 'package:flutter/material.dart';
 import 'package:connect/setup/signup.dart';
 import 'register.dart';
@@ -85,17 +86,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     SizedBox(height: 5.0),
                     Container(
+
                       alignment: Alignment(1.0, 0.0),
                       padding: EdgeInsets.only(top: 15.0, left: 20.0),
-                      child: InkWell(
+
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ResetPage()),
+                          );
+                        },
                         child: Text(
                           'Forgot Password',
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Montserrat',
-                              decoration: TextDecoration.underline),
-                        ),
+                          style: TextStyle
+                            (color: Colors.green, fontWeight: FontWeight.bold, fontFamily: 'Montserrat', decoration: TextDecoration.underline),),
                       ),
                     ),
                     SizedBox(height: 40.0),
