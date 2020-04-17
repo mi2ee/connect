@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:connect/pages/HomeScreen.dart';
-import 'package:connect/Setup/LoginHandling.dart' ;
 
 
 
@@ -16,13 +15,23 @@ class _RegisterPageState extends State<RegisterPage> {
 
   String email = '',
       password = '';
-  final _formKey = GlobalKey<FormState>();
-  final _signInOut = LoginHandling.Auth();
+
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       resizeToAvoidBottomPadding: false,
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back_ios),
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -59,7 +68,6 @@ class _RegisterPageState extends State<RegisterPage> {
           Container(
             padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
             child: Form(
-                key: _formKey,
                 child: Column(
                   children: <Widget>[
                     TextFormField(
@@ -125,27 +133,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       height: 40.0,
                       child: GestureDetector(
                         onTap: () async{
-
-                          if (_formKey.currentState.validate()){
-
-                            dynamic result = await _signInOut.RegisterEmail(email, password);
-
-                            if (result != null){
-                              print('valid');
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) =>
-                                    MainPage.SecondRoute()), //Link to Information page
-                              );
-                            }else{
-                              print('This Email might not be valid or it is already taken');
-                            }
-                          }else{
-                            print('not valid');
-                          }
-
-
-
                         },
                         child: Material(
                           borderRadius: BorderRadius.circular(20.0),
@@ -175,21 +162,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         height: 40.0,
                         color: Colors.transparent,
                         child: GestureDetector(
-                          onTap: () async {
-                            dynamic result = await _signInOut
-                                .handleGSignIn(); //Login command
-                            if (result == null) {
-                              print('Login Failed');
-                            } else {
-                              print('Logged in with');
-                              print(result.uid);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) =>
-                                    MainPage.SecondRoute()), //Link to Information page
-                              );
-                            }                                                                                     //Register with Google
-                          },
+
+                            //Register with Google
+
                           child: Container(
                             decoration: BoxDecoration(
                                 border: Border.all(

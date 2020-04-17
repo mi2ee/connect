@@ -1,6 +1,7 @@
 import 'package:connect/pages/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:connect/setup/signup.dart';
+import 'register.dart';
 
 void main() => runApp(new loginPage());
 
@@ -167,6 +168,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 InkWell(
                   onTap: () {
 
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RegisterPage()),
+                    );
                   },
                   child: Text(
                     'Register',
