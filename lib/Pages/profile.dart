@@ -5,6 +5,7 @@ import 'package:responsive_container/responsive_container.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:connect/Setup/AddInfo.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class Design extends StatefulWidget {
@@ -370,35 +371,79 @@ class _AboutSheetState extends State<AboutSheet> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           CircularProfileAvatar(
-                            "", backgroundColor: Colors.grey.shade200,
+                            "", backgroundColor: Colors.grey.shade300,
                             elevation: 5.0,
                             radius: 30.0,
                             child: Center(
-                              child: FaIcon(FontAwesomeIcons.facebook,color: Colors.indigo,),
+                              child: RaisedButton(
+                                onPressed: ()async {
+                                  const url = 'https://facebook.com/klnHenri';
+
+                                  if (await canLaunch(url)) {
+                                    await launch(url, forceSafariVC: false);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
+                                child: FaIcon(FontAwesomeIcons.facebook,color: Colors.indigo,),
+                            ),
                             ),
                           ),
                           CircularProfileAvatar(
-                            "", backgroundColor: Colors.grey.shade200,
+                            "", backgroundColor: Colors.grey.shade300,
                             elevation: 5.0,
                             radius: 30.0,
                             child: Center(
-                              child: FaIcon(FontAwesomeIcons.instagram,color: Color(0xFFE1306C),),
+                              child: RaisedButton(
+                                onPressed: ()async {
+                                  const url = 'https://instagram.com/klnHenri';
+
+                                  if (await canLaunch(url)) {
+                                    await launch(url, forceSafariVC: false);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
+                                child: FaIcon(FontAwesomeIcons.instagram,color: Color(0xFFE1306C),),
+                              ),
                             ),
                           ),
                           CircularProfileAvatar(
-                            "", backgroundColor: Colors.grey.shade200,
+                            "", backgroundColor: Colors.grey.shade300,
                             elevation: 5.0,
                             radius: 30.0,
                             child: Center(
-                              child: FaIcon(FontAwesomeIcons.twitter,color: Colors.blue,),
+                              child: RaisedButton(
+                                onPressed: ()async {
+                                  const url = 'https://twitter.com/klnHenri';
+
+                                  if (await canLaunch(url)) {
+                                    await launch(url, forceSafariVC: false);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
+                                child: FaIcon(FontAwesomeIcons.twitter,color: Colors.blue,),
+                              ),
                             ),
                           ),
                           CircularProfileAvatar(
-                            "", backgroundColor: Colors.grey.shade200,
+                            "", backgroundColor: Colors.grey.shade300,
                             elevation: 5.0,
                             radius: 30.0,
                             child: Center(
-                              child: FaIcon(FontAwesomeIcons.snapchat,color: Colors.yellowAccent),
+                              child: RaisedButton(
+                                onPressed: ()async {
+                                  const url = 'https://snapchat.com/add/klnHenri';
+
+                                  if (await canLaunch(url)) {
+                                    await launch(url, forceSafariVC: false);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
+                                child: FaIcon(FontAwesomeIcons.snapchat,color: Colors.yellowAccent),
+                              ),
                             ),
                           ),
                         ],
@@ -482,6 +527,39 @@ class _AboutSheetState extends State<AboutSheet> {
                                 color: Colors.lightGreen,
                               ),
                               title: Text("Bad Homburg, Germany"),
+
+                              onTap: () {
+                                //open change location
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        elevation: 4.0,
+                        color: Colors.blueGrey.shade50,
+                        margin: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 16.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0)),
+                        child: Column(
+                          children: <Widget>[
+                            ListTile(
+                              leading: Icon(
+                                Icons.bubble_chart,
+                                color: Colors.lightGreen,
+                              ),
+                              title: Text("male, in a relation with his Computer"),
+
+                              onTap: () {
+                                //open change location
+                              },
+                            ),
+                            ListTile(
+                              leading: Icon(
+                                Icons.people,
+                                color: Colors.lightGreen,
+                              ),
+                              title: Text("You got 26 mutural Friends"),
 
                               onTap: () {
                                 //open change location
