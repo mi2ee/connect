@@ -180,6 +180,7 @@ class _DesignState extends State<Design> with SingleTickerProviderStateMixin{
                                   title: Text("Edit your Socials"),
                                   trailing: Icon(Icons.keyboard_arrow_right),
                                   onTap: () {
+
                                     //open change password
                                   },
                                 ),
@@ -831,8 +832,3 @@ class _TimeLineSheetState extends State<TimeLineSheet> {
     );
   }
 }
-
-
-
-
-

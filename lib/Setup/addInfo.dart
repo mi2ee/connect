@@ -297,7 +297,7 @@ class _EditProfileState extends State<EditProfile> {
 
 
                         Container(
-                            padding: EdgeInsets.only(top: spaceFirstSecondForm, left: 20.0, right: 20.0),
+                            padding: EdgeInsets.only(top: spaceFirstSecondForm - 20, left: 0, right: 0.0),
                             child: GestureDetector(
 
 
@@ -312,21 +312,19 @@ class _EditProfileState extends State<EditProfile> {
                                           Container(
                                             height: sizeDependend,
                                             color: Colors.white,
-                                            padding: EdgeInsets.only(right: 8.0, top: 8.0, bottom: 8.0),
+                                            padding: EdgeInsets.only(right: 10.0, top: 8.0, bottom: 8.0),
                                             child: Align(
-                                              alignment: Alignment.centerRight,
-                                              child: RaisedButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);},
-                                                  child: InkWell(
+                                              alignment: Alignment.center,
+
                                                     child: Text(
-                                                      'Use',
+                                                      'Choose your Birthday',
                                                       style: TextStyle(                                                                                                    //DatePicker
-                                                        color: Colors.green,
+                                                        color: Colors.grey,
+                                                        fontSize: 20,
                                                         fontWeight: FontWeight.bold,
                                                         fontFamily: 'Montserrat',),
-                                                    ),
-                                                  )
+
+
                                               ),
                                             ),
                                           ),
@@ -335,8 +333,8 @@ class _EditProfileState extends State<EditProfile> {
                                               child: CupertinoDatePicker(
                                                 mode: CupertinoDatePickerMode.date,
                                                 initialDateTime: enteredDate,
-                                                minimumYear: 1900,
-                                                maximumDate: DateTime.now(),
+                                                minimumYear: 1950,
+                                                maximumDate: DateTime.now (),
                                                 onDateTimeChanged: (DateTime newDate) {
                                                   print(enteredDate);
                                                   setState(() {
@@ -357,23 +355,23 @@ class _EditProfileState extends State<EditProfile> {
                               child: Container(
                                 height: 40.0,
                                 decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.black,
-                                        style: BorderStyle.solid,
-                                        width: 1.0),
+                                    border: Border
+                                      (bottom: BorderSide(width: 1.0, color: Colors.grey),),
                                     color: Colors.transparent,
-                                    borderRadius: BorderRadius.circular(20.0)),
+                                   ),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,                                                                                                //Birthday Button
+                                  mainAxisAlignment: MainAxisAlignment.start,                                                                                                //Birthday Button
                                   children: <Widget>[
                                     Center(
                                     ),
-                                    SizedBox(width: 10.0),
+
                                     Center(
                                       child: Text('Your Birthday: ' + stringentereddate,
+                                          textAlign: TextAlign.start,
                                           style: TextStyle(
+                                              fontFamily: 'Montserrat',                                                                                                               //describe yourself
                                               fontWeight: FontWeight.bold,
-                                              fontFamily: 'Montserrat')),
+                                              color: Colors.grey)),
                                       //TODO change to something better
                                     )
                                   ],
