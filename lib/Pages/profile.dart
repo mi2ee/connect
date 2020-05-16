@@ -1,3 +1,4 @@
+import 'package:connect/Setup/EditSocials.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -180,8 +181,10 @@ class _DesignState extends State<Design> with SingleTickerProviderStateMixin{
                                   title: Text("Edit your Socials"),
                                   trailing: Icon(Icons.keyboard_arrow_right),
                                   onTap: () {
-
-                                    //open change password
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => EditSocials()), //Link to Information page
+                                    );
                                   },
                                 ),
                                 sizedBox,
