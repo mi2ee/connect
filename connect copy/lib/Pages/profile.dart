@@ -1,18 +1,23 @@
-import 'package:connect/Setup/EditSocials.dart';
+import 'package:connect/Setup/EditSocials.dart' as editSocials;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:responsive_container/responsive_container.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:connect/Setup/AddInfo.dart';
+import 'package:connect/Setup/addInfo.dart' as addInfo;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:connect/Setup/LoginHandling.dart' as LoginHandling;
 
 class Design extends StatefulWidget {
   @override
   _DesignState createState() => _DesignState();
 }
 class _DesignState extends State<Design> with SingleTickerProviderStateMixin{
+
+
+  final _signInOut = LoginHandling.Auth();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,7 +166,7 @@ class _DesignState extends State<Design> with SingleTickerProviderStateMixin{
 
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => EditProfile()), //Link to Information page
+                                      MaterialPageRoute(builder: (context) => addInfo.AddInfo()), //Link to Information page
                                     );
                                   },
                                 ),
@@ -176,7 +181,7 @@ class _DesignState extends State<Design> with SingleTickerProviderStateMixin{
                                   onTap: () {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => EditSocials()), //Link to Information page
+                                      MaterialPageRoute(builder: (context) => editSocials.EditSocials()), //Link to Information page
                                     );
                                   },
                                 ),
@@ -243,7 +248,14 @@ class _DesignState extends State<Design> with SingleTickerProviderStateMixin{
                           Container(
                             height: 40.0,
                             child: GestureDetector(
-                              onTap: () {
+                              onTap: () async{
+                                dynamic result = await _signInOut.handleGSignOut();
+                                if (result != null) {
+                                print('Logout failed');
+                                print(result);
+                                }else{
+                                print ('Logged out');
+                                };
                               },
                               child: Material(
                                 borderRadius: BorderRadius.circular(50.0),
@@ -325,6 +337,7 @@ class _DesignState extends State<Design> with SingleTickerProviderStateMixin{
 
                 child: GestureDetector(
                   onTap: () {
+                    Navigator.pop(context);
                   },
                   child: Material(
                     borderRadius: BorderRadius.circular(50.0),
@@ -403,6 +416,7 @@ class _DesignState extends State<Design> with SingleTickerProviderStateMixin{
 
                 child: GestureDetector(
                   onTap: () {
+                    Navigator.pop(context);
                   },
                   child: Material(
                     borderRadius: BorderRadius.circular(50.0),
