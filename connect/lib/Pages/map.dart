@@ -1,40 +1,58 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class Map extends StatefulWidget {
-  @override
-  _MapState createState() => _MapState();
-}
 
-class _MapState extends State<Map> {
+class Map extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      //backgroundColor: Color(0xFF7A9BEE),
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: Icon(Icons.arrow_back_ios),
-          color: Colors.black,
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        title: Text('Map ',
-            style: TextStyle(
-                fontFamily: 'Montserrat',
-                fontSize: 18.0,
-                color: Colors.black)),
-        centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.more_horiz),
-            onPressed: () {},
-            color: Colors.black,
-          )
-        ],
-      ),
-
+    return MaterialApp(
+      home: MapSample(),
     );
   }
+}
+
+class MapSample extends StatefulWidget {
+  @override
+  State<MapSample> createState() => MapSampleState();
+}
+
+class MapSampleState extends State<MapSample> {
+
+  Completer<GoogleMapController> _controller = Completer();
+
+  static final CameraPosition _kGooglePlex = CameraPosition(
+      target: LatLng(50.22683, 8.61816),
+      zoom: 15
+  );
+
+  static final CameraPosition _kLake = CameraPosition(
+      target: LatLng(50.22683, 8.61816),
+
+      zoom: 15);
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: GoogleMap(
+        initialCameraPosition: _kGooglePlex,
+        onMapCreated: (GoogleMapController controller) {
+          _setStyle(controller);
+          _controller.complete(controller);
+
+        },
+      ),
+
+
+    );
+
+  }
+  void _setStyle(GoogleMapController controller) async {
+    String value = await DefaultAssetBundle.of(context)
+        .loadString('assets/CustomMap.json');
+    controller.setMapStyle(value);
+  }
+
 }
